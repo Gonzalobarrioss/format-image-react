@@ -1,25 +1,20 @@
-import Express from "express";
-
+import express from "express";
 import sequelize from "./db.js";
-import cors from "cors";
 import router from "./Routes/routes.js";
 
-const app = Express();
+const app = express();
 
-app.use(Express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(Express.json());
-
-app.use(cors({ origin: "*" }));
+app.use(express.json());
 
 app.use((_, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, PATCH, DELETE"
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
 
